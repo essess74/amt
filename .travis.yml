@@ -2,3 +2,7 @@ language: java
 script: mvn clean package
 jdk:
   - oraclejdk8
+deploy:
+  provider: heroku
+  api_key: "0e090e2e-f03f-4ced-a4f8-7ef4724173b0"
+  app: amt-dev
