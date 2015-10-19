@@ -1,6 +1,9 @@
 package com.amt.entities;
 
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -23,6 +26,10 @@ public class ArticleEntity {
     private String author;
     @Column(name = "submission_date")
     private Date submissionDate;
+    @Column(name = "url")
+    private String url;
+    @Column(name = "type")
+    private String type;
 
     public Long getId() {
         return id;
@@ -64,6 +71,22 @@ public class ArticleEntity {
         this.submissionDate = submissionDate;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -72,23 +95,27 @@ public class ArticleEntity {
 
         ArticleEntity that = (ArticleEntity) o;
 
-        return new org.apache.commons.lang3.builder.EqualsBuilder()
+        return new EqualsBuilder()
                 .append(id, that.id)
                 .append(content, that.content)
                 .append(title, that.title)
                 .append(author, that.author)
                 .append(submissionDate, that.submissionDate)
+                .append(url, that.url)
+                .append(type, that.type)
                 .isEquals();
     }
 
     @Override
     public int hashCode() {
-        return new org.apache.commons.lang3.builder.HashCodeBuilder(17, 37)
+        return new HashCodeBuilder(17, 37)
                 .append(id)
                 .append(content)
                 .append(title)
                 .append(author)
                 .append(submissionDate)
+                .append(url)
+                .append(type)
                 .toHashCode();
     }
 }
