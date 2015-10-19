@@ -319,25 +319,36 @@
 
                 <div class="col-lg-4" ng-repeat="article in articles | limitTo:6">
                     <div class="blog-carousel">
-                        <div class="entry" ng-switch on="article.type">
-                            <img ng-switch-when="IMG" src="demos/blog_01.jpg" alt="" class="img-responsive">
+                        <div ng-switch on="article.type">
+                            <div class="entry" ng-switch-when="IMG">
+                                <img ng-src="{{article.url}}" alt="" class="img-responsive">
 
-                            <div ng-switch-when="IMG" class="magnifier">
-                                <div class="buttons">
-                                    <a class="st" rel="bookmark" href="article-image.html"><i
-                                            class="fa fa-link"></i></a>
+                                <div class="magnifier">
+                                    <div class="buttons">
+                                        <a class="st" rel="bookmark" href="article-image.html"><i
+                                                class="fa fa-link"></i></a>
+                                    </div>
+                                    <!-- end buttons -->
                                 </div>
-                                <!-- end buttons -->
+                                <!-- end magnifier -->
+                                <div class="post-type">
+                                    <i class="fa fa-picture-o"></i>
+                                </div>
                             </div>
-                            <!-- end magnifier -->
-                            <div ng-switch-when="IMG" class="post-type">
-                                <i class="fa fa-picture-o"></i>
+                            <div class="entry" ng-switch-when="VID">
+                                <!-- end pull-right -->
+                                <iframe class="youtube_video"
+                                        ng-src="{{trustSrc(article.url)}}"></iframe>
+                                <div class="post-type">
+                                    <i class="fa fa-play"></i>
+                                </div>
                             </div>
-                            <!-- end pull-right -->
-                            <iframe ng-switch-when="VID" class="youtube_video"
-                                    ng-src="{{trustSrc(article.url)}}"></iframe>
-                            <div ng-switch-when="VID" class="post-type">
-                                <i class="fa fa-play"></i>
+                            <div class="entry" ng-switch-when="SND">
+                                <iframe class="soundcloud" height="166"
+                                        ng-src="{{trustSrc(article.url)}}"></iframe>
+                                <div class="post-type">
+                                    <i class="fa fa-music"></i>
+                                </div>
                             </div>
                         </div>
                         <!-- end entry -->
@@ -346,7 +357,7 @@
 
                             <div class="blog-carousel-meta">
                                 <span><i class="fa fa-calendar"></i>
-                                    {{article.submissionDate}}
+                                    {{article.submissionDate|date:'MM/dd/yyyy'}}
                                 </span>
                                 <span><i class="fa fa-comment"></i> <a href="#">0 تعليقات</a></span>
                             </div>
@@ -359,238 +370,9 @@
                         <!-- end blog-carousel-desc -->
                     </div>
                 </div>
-                <div class="col-lg-4 first">
-                    <div class="blog-carousel">
-                        <div class="entry">
-                            <img src="demos/blog_01.jpg" alt="" class="img-responsive">
-
-                            <div class="magnifier">
-                                <div class="buttons">
-                                    <a class="st" rel="bookmark" href="article-image.html"><i
-                                            class="fa fa-link"></i></a>
-                                </div>
-                                <!-- end buttons -->
-                            </div>
-                            <!-- end magnifier -->
-                            <div class="post-type">
-                                <i class="fa fa-picture-o"></i>
-                            </div>
-                            <!-- end pull-right -->
-                        </div>
-                        <!-- end entry -->
-                        <div class="blog-carousel-header">
-                            <h3><a title="" href="article-image.html">رئيسة جمعية القضاة التونسيين: مشروع قانون المجلس
-                                الأعلى للقضاء غير دستوري</a></h3>
-
-                            <div class="blog-carousel-meta">
-                                <span><i class="fa fa-calendar"></i> السبت 19 سبتمبر 2015</span>
-                                <span><i class="fa fa-comment"></i> <a href="#">0 تعليقات</a></span>
-                            </div>
-                            <!-- end blog-carousel-meta -->
-                        </div>
-                        <!-- end blog-carousel-header -->
-                        <div class="blog-carousel-desc">
-                            <p> التونسيين بنادي القضاة بسكرة وذلك للتداول في الشأن القضائي بصفة عامة بحضور عدد من القضاة
-                                والرئيسة الشرفية لجمعية القضاة التونسيين كلثوم كنو...</p>
-
-                        </div>
-                        <!-- end blog-carousel-desc -->
-                    </div>
-                    <!-- end blog-carousel -->
-                </div>
-                <!-- end col-lg-4 -->
-
-                <div class="col-lg-4">
-                    <div class="blog-carousel">
-                        <div class="entry">
-                            <img src="demos/blog_02.jpg" alt="" class="img-responsive">
-
-                            <div class="magnifier">
-                                <div class="buttons">
-                                    <a class="st" rel="bookmark" href="blog-single-sidebar.html"><i
-                                            class="fa fa-link"></i></a>
-                                </div>
-                                <!-- end buttons -->
-                            </div>
-                            <!-- end magnifier -->
-                            <div class="post-type">
-                                <i class="fa fa-picture-o"></i>
-                            </div>
-                            <!-- end pull-right -->
-                        </div>
-                        <!-- end entry -->
-                        <div class="blog-carousel-header">
-                            <h3><a title="" href="blog-single-sidebar.html">جمعية القضاة التونسيين</a></h3>
-
-                            <div class="blog-carousel-meta">
-                                <span><i class="fa fa-calendar"></i> 03 أكتوبر 2015</span>
-                                <span><i class="fa fa-comment"></i> <a href="#">0 تعليقات</a></span>
-                            </div>
-                            <!-- end blog-carousel-meta -->
-                        </div>
-                        <!-- end blog-carousel-header -->
-                        <div class="blog-carousel-desc">
-                            <p>جمعية القضاة التونسيين جمعية القضاة التونسيين جمعية القضاة التونسيين جمعية القضاة
-                                التونسيين جمعية القضاة التونسيين جمعية القضاة التونسيين جمعية القضاة التونسيين جمعية
-                                القضاة التونسيين. </p>
-                        </div>
-                        <!-- end blog-carousel-desc -->
-                    </div>
-                    <!-- end blog-carousel -->
-                </div>
-                <!-- end col-lg-4 -->
-
-                <div class="col-lg-4 last">
-                    <div class="blog-carousel">
-                        <div class="entry">
-                            <img src="demos/blog_03.jpg" alt="" class="img-responsive">
-
-                            <div class="magnifier">
-                                <div class="buttons">
-                                    <a class="st" rel="bookmark" href="blog-single-sidebar.html"><i
-                                            class="fa fa-link"></i></a>
-                                </div>
-                                <!-- end buttons -->
-                            </div>
-                            <!-- end magnifier -->
-                            <div class="post-type">
-                                <i class="fa fa-picture-o"></i>
-                            </div>
-                            <!-- end pull-right -->
-                        </div>
-                        <!-- end entry -->
-                        <div class="blog-carousel-header">
-                            <h3><a title="" href="blog-single-sidebar.html">جمعية القضاة التونسيين</a></h3>
-
-                            <div class="blog-carousel-meta">
-                                <span><i class="fa fa-calendar"></i> 03 أكتوبر 2015</span>
-                                <span><i class="fa fa-comment"></i> <a href="#">0 تعليقات</a></span>
-                            </div>
-                            <!-- end blog-carousel-meta -->
-                        </div>
-                        <!-- end blog-carousel-header -->
-                        <div class="blog-carousel-desc">
-                            <p>جمعية القضاة التونسيين جمعية القضاة التونسيين جمعية القضاة التونسيين جمعية القضاة
-                                التونسيين جمعية القضاة التونسيين جمعية القضاة التونسيين جمعية القضاة التونسيين جمعية
-                                القضاة التونسيين. </p>
-                        </div>
-                        <!-- end blog-carousel-desc -->
-                    </div>
-                    <!-- end blog-carousel -->
-                </div>
-                <!-- end col-lg-4 -->
-
-                <div class="col-lg-4 first">
-                    <div class="blog-carousel">
-                        <div class="entry">
-                            <iframe class="youtube_video"
-                                    src="http://player.vimeo.com/video/72960194?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff"
-                                    width="500" height="281"></iframe>
-                            <div class="post-type">
-                                <i class="fa fa-play"></i>
-                            </div>
-                            <!-- end pull-right -->
-                        </div>
-                        <!-- end entry -->
-                        <div class="blog-carousel-header">
-                            <h3><a title="" href="blog-single-sidebar.html">جمعية القضاة التونسيين</a></h3>
-
-                            <div class="blog-carousel-meta">
-                                <span><i class="fa fa-calendar"></i> 03 أكتوبر 2015</span>
-                                <span><i class="fa fa-comment"></i> <a href="#">0 تعليقات</a></span>
-                            </div>
-                            <!-- end blog-carousel-meta -->
-                        </div>
-                        <!-- end blog-carousel-header -->
-                        <div class="blog-carousel-desc">
-                            <p>جمعية القضاة التونسيين جمعية القضاة التونسيين جمعية القضاة التونسيين جمعية القضاة
-                                التونسيين جمعية القضاة التونسيين جمعية القضاة التونسيين جمعية القضاة التونسيين جمعية
-                                القضاة التونسيين. </p>
-                        </div>
-                        <!-- end blog-carousel-desc -->
-                    </div>
-                    <!-- end blog-carousel -->
-                </div>
-                <!-- end col-lg-4 -->
-
-                <div class="col-lg-4">
-                    <div class="blog-carousel">
-                        <div class="entry">
-                            <iframe class="soundcloud" height="166"
-                                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/143789978&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_artwork=true"></iframe>
-                            <div class="post-type">
-                                <i class="fa fa-music"></i>
-                            </div>
-                            <!-- end pull-right -->
-                        </div>
-                        <!-- end entry -->
-                        <div class="blog-carousel-header">
-                            <h3><a title="" href="blog-single-sidebar.html">جمعية القضاة التونسيين</a></h3>
-
-                            <div class="blog-carousel-meta">
-                                <span><i class="fa fa-calendar"></i> 03 أكتوبر 2015</span>
-                                <span><i class="fa fa-comment"></i> <a href="#">0 تعليقات</a></span>
-                            </div>
-                            <!-- end blog-carousel-meta -->
-                        </div>
-                        <!-- end blog-carousel-header -->
-                        <div class="blog-carousel-desc">
-                            <p>جمعية القضاة التونسيين جمعية القضاة التونسيين جمعية القضاة التونسيين جمعية القضاة
-                                التونسيين جمعية القضاة التونسيين جمعية القضاة التونسيين جمعية القضاة التونسيين جمعية
-                                القضاة التونسيين. </p>
-                        </div>
-                        <!-- end blog-carousel-desc -->
-                    </div>
-                    <!-- end blog-carousel -->
-                </div>
-                <!-- end col-lg-4 -->
-
-                <div class="col-lg-4 last">
-                    <div class="blog-carousel">
-                        <div class="entry">
-                            <img src="demos/blog_04.jpg" alt="" class="img-responsive">
-
-                            <div class="magnifier">
-                                <div class="buttons">
-                                    <a class="st" rel="bookmark" href="blog-single-sidebar.html"><i
-                                            class="fa fa-link"></i></a>
-                                </div>
-                                <!-- end buttons -->
-                            </div>
-                            <!-- end magnifier -->
-                            <div class="post-type">
-                                <i class="fa fa-picture-o"></i>
-                            </div>
-                            <!-- end pull-right -->
-                        </div>
-                        <!-- end entry -->
-                        <div class="blog-carousel-header">
-                            <h3><a title="" href="blog-single-sidebar.html">جمعية القضاة التونسيين</a></h3>
-
-                            <div class="blog-carousel-meta">
-                                <span><i class="fa fa-calendar"></i> 03 أكتوبر 2015</span>
-                                <span><i class="fa fa-comment"></i> <a href="#">0 تعليقات</a></span>
-                            </div>
-                            <!-- end blog-carousel-meta -->
-                        </div>
-                        <!-- end blog-carousel-header -->
-                        <div class="blog-carousel-desc">
-                            <p>جمعية القضاة التونسيين جمعية القضاة التونسيين جمعية القضاة التونسيين جمعية القضاة
-                                التونسيين جمعية القضاة التونسيين جمعية القضاة التونسيين جمعية القضاة التونسيين جمعية
-                                القضاة التونسيين. </p>
-                        </div>
-                        <!-- end blog-carousel-desc -->
-                    </div>
-                    <!-- end blog-carousel -->
-                </div>
-                <!-- end col-lg-4 -->
             </div>
-            <!-- end blog-masonry -->
         </div>
-        <!-- end container -->
     </section>
-    <!-- end gray-wrapper -->
-
 
     <section class="white-wrapper jt-shadow">
         <div class="container">
