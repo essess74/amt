@@ -26,10 +26,19 @@ app.service('ArticlesService', ['$resource', function ($resource) {
         }).query();
     };
 }]);
+app.service('SlidesService', ['$resource', function ($resource) {
+    this.getAllSlides = function () {
+        return $resource('slide', {}, {
+            query: {method: 'GET', params: {}, isArray: true}
+        }).query();
+    };
+}]);
 
-app.controller('ArticlesCtrl', ['$scope', 'ArticlesService','$sce', function ($scope, ArticlesService,$sce) {
+
+app.controller('ArticlesCtrl', ['$scope', 'ArticlesService', 'SlidesService', '$sce', function ($scope, ArticlesService, SlidesService, $sce) {
+    $scope.slides = SlidesService.getAllSlides();
     $scope.articles = ArticlesService.getAllArticles();
-    $scope.trustSrc = function( url ){
+    $scope.trustSrc = function (url) {
         return $sce.trustAsResourceUrl(url);
     }
 }]);
