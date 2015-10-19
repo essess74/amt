@@ -11,6 +11,13 @@ var app = angular.module('AmtApp', ['ngResource', 'ngSanitize', 'ngRoute']);
  templateUrl: 'search-back.html'
  });
  });*/
+
+app.directive('cIndex', function () {
+    return {
+        restrict: 'E',
+        templateUrl: 'component/index.html'
+    };
+});
 /* Category service */
 app.service('ArticlesService', ['$resource', function ($resource) {
     this.getAllArticles = function () {
