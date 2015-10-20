@@ -16,6 +16,20 @@ app.directive('cIndex', function () {
     };
 });
 
+app.directive('cFooter', function () {
+    return {
+        restrict: 'E',
+        templateUrl: 'component/footer.html'
+    };
+});
+
+app.directive('cCopyright', function () {
+    return {
+        restrict: 'E',
+        templateUrl: 'component/copyright.html'
+    };
+});
+
 /* Category service */
 app.service('ArticlesService', ['$resource', function ($resource) {
     this.getAllArticles = function () {
