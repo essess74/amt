@@ -1,16 +1,13 @@
-var app = angular.module('AmtApp', ['ngResource', 'ngSanitize', 'ngRoute']);
+var app = angular.module('AmtApp', ['ngResource', 'ngSanitize', 'ngRoute', 'pascalprecht.translate']);
 
-/*app.config(function ($translateProvider, $routeProvider) {
- $translateProvider.useStaticFilesLoader({
- prefix: 'languages/',
- suffix: '.json'
- });
- $translateProvider.preferredLanguage('frFR');
 
- $routeProvider.when('/search', {
- templateUrl: 'search-back.html'
- });
- });*/
+app.config(function ($translateProvider) {
+    $translateProvider.useStaticFilesLoader({
+        prefix: 'languages/',
+        suffix: '.json'
+    });
+    $translateProvider.preferredLanguage('arAR');
+});
 
 app.directive('cIndex', function () {
     return {
@@ -18,6 +15,7 @@ app.directive('cIndex', function () {
         templateUrl: 'component/index.html'
     };
 });
+
 /* Category service */
 app.service('ArticlesService', ['$resource', function ($resource) {
     this.getAllArticles = function () {
@@ -34,11 +32,21 @@ app.service('SlidesService', ['$resource', function ($resource) {
     };
 }]);
 
-
-app.controller('ArticlesCtrl', ['$scope', 'ArticlesService', 'SlidesService', '$sce', function ($scope, ArticlesService, SlidesService, $sce) {
+app.controller('ArticlesCtrl', ['$scope', 'ArticlesService', 'SlidesService', '$sce', '$timeout', function ($scope, ArticlesService, SlidesService, $sce, $timeout) {
     $scope.slides = SlidesService.getAllSlides();
     $scope.articles = ArticlesService.getAllArticles();
     $scope.trustSrc = function (url) {
         return $sce.trustAsResourceUrl(url);
     }
+    $timeout(function () {
+        jQuery(document).ready(function () {
+            jQuery('.fullwidthbanner').revolution(
+                {
+                    delay: 7000,
+                    startwidth: 1080,
+                    startheight: 500,
+                    hideThumbs: 10
+                });
+        });
+    });
 }]);
