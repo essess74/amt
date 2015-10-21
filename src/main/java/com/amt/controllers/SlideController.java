@@ -1,5 +1,7 @@
 package com.amt.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,12 +11,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by MedMalek on 19/10/2015.
- */
 @RestController
 public class SlideController {
     private static final List<Object> FIRST_PAGE_SLIDE = new ArrayList<>();
+    @Autowired
+    private ResourceLoader resourceLoader;
 
     static {
         for (int i = 1; i < 5; i++) {
@@ -22,7 +23,7 @@ public class SlideController {
         }
     }
 
-    @RequestMapping("/slide")
+    @RequestMapping("\\slide")
     public
     @ResponseBody
     List<Object> getSlideshowImages() {
