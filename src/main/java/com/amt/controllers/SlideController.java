@@ -23,7 +23,7 @@ public class SlideController {
         }
     }
 
-    @RequestMapping("\\slide")
+    @RequestMapping("/slide")
     public
     @ResponseBody
     List<Object> getSlideshowImages() {
