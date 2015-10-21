@@ -59,10 +59,11 @@
     </style>
 </head>
 <body id="boxed">
-<div id="wrapper" class="container" ng-controller="ArticlesCtrl">
+<div id="wrapper" class="container">
     <c-top-bar></c-top-bar>
     <c-main-menu></c-main-menu>
-    <c-index></c-index>
+    <!--    <c-index></c-index>-->
+    <div ng-view></div>
 </div>
 
 <c-footer></c-footer>
@@ -104,16 +105,26 @@
     var app = angular.module('AmtApp', ['ngResource', 'ngSanitize', 'ngRoute', 'pascalprecht.translate']);
 
 
-    app.config(function ($translateProvider) {
+    app.config(function ($translateProvider, $routeProvider) {
         $translateProvider.useStaticFilesLoader({
             prefix: 'languages/',
             suffix: '.json'
         });
         $translateProvider.preferredLanguage('arAR');
+        $routeProvider.when('/', {
+            templateUrl: 'component/index.html',
+            controller: 'IndexCtrl'
+        }).when('/article/:articleId', {
+            templateUrl: 'pages/article.html',
+            controller: 'ArticleCtrl'
+        });
+
     });
 </script>
 <script src="javascript/directives/Directives.js"></script>
 <script src="javascript/controllers/IndexController.js"></script>
+<script src="javascript/controllers/ArticleController.js"></script>
+<script src="javascript/filters/AddFilter.js"></script>
 <script src="javascript/services/ArticlesService.js"></script>
 <script src="javascript/services/SlidesService.js"></script>
 </body>

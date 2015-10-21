@@ -1,4 +1,4 @@
-app.controller('ArticlesCtrl', ['$scope', 'ArticlesService', 'SlidesService', '$sce', '$timeout', function ($scope, ArticlesService, SlidesService, $sce, $timeout) {
+app.controller('IndexCtrl', ['$scope', 'ArticlesService', 'SlidesService', '$sce', '$timeout', function ($scope, ArticlesService, SlidesService, $sce, $timeout) {
     $scope.slides = SlidesService.getAllSlides();
     $scope.articles = ArticlesService.getAllArticles();
     $scope.trustSrc = function (url) {
@@ -14,7 +14,7 @@ app.controller('ArticlesCtrl', ['$scope', 'ArticlesService', 'SlidesService', '$
                     hideThumbs: 10
                 });
         });
-        jQuery(document).ready(function(){
+        jQuery(document).ready(function () {
             jQuery("body").fitVids();
         });
         jQuery(document).ready(function ($) {
