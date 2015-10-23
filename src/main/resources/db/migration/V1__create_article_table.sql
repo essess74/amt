@@ -1,6 +1,6 @@
 /*Drop article table*/
 DROP TABLE IF EXISTS article;
-
+DROP SEQUENCE IF EXISTS article_no_seq;
 CREATE SEQUENCE article_no_seq START 1;
 
 /*Create article table*/

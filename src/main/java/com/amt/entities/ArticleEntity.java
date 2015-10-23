@@ -1,11 +1,13 @@
 package com.amt.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by MedMalek on 18/10/2015.
@@ -30,6 +32,9 @@ public class ArticleEntity {
     private String url;
     @Column(name = "type")
     private String type;
+    @OneToMany(mappedBy = "article")
+    @JsonManagedReference
+    private List<KeyWordEntity> keyWords;
 
     public Long getId() {
         return id;
@@ -87,6 +92,14 @@ public class ArticleEntity {
         this.type = type;
     }
 
+    public List<KeyWordEntity> getKeyWords() {
+        return keyWords;
+    }
+
+    public void setKeyWords(List<KeyWordEntity> keyWords) {
+        this.keyWords = keyWords;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -103,6 +116,7 @@ public class ArticleEntity {
                 .append(submissionDate, that.submissionDate)
                 .append(url, that.url)
                 .append(type, that.type)
+                .append(keyWords, that.keyWords)
                 .isEquals();
     }
 
@@ -116,6 +130,7 @@ public class ArticleEntity {
                 .append(submissionDate)
                 .append(url)
                 .append(type)
+                .append(keyWords)
                 .toHashCode();
     }
 }
