@@ -118,15 +118,7 @@
                 </div>
                 <!-- end title -->
                 <div class="tagcloud">
-                    <a href="#" class="" title="12 topics">المجلس الأعلى للقضاء</a>
-                    <a href="#" class="" title="2 topics">قانون</a>
-                    <a href="#" class="" title="21 topics">الدستور</a>
-                    <a href="#" class="" title="5 topics">الحركة</a>
-                    <a href="#" class="" title="62 topics">العدل</a>
-                    <a href="#" class="" title="12 topics">الهيئة</a>
-                    <a href="#" class="" title="88 topics">الإعلام</a>
-                    <a href="#" class="" title="15 topics">تونس</a>
-                    <a href="#" class="" title="5 topics">مجلس وزاري</a>
+                    <a href="" class="" ng-repeat="keyWord in article.keyWords" title="topics">{{keyWord.keyWord}}</a>
                 </div>
             </div>
             <!-- end widget -->
