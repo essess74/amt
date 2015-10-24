@@ -1,11 +1,19 @@
-app.controller('ArticleCtrl', ['$scope', 'ArticlesService', '$routeParams', '$sce','$location', '$anchorScroll', function ($scope, ArticlesService, $routeParams, $sce,$location, $anchorScroll) {
-    $scope.articleId = $routeParams.articleId;
-    $scope.trustSrc = function (url) {
-        return $sce.trustAsResourceUrl(url);
-    }
-    $scope.article = ArticlesService.getArticle($scope.articleId);
-    $location.hash('content');
+app.controller('ArticleCtrl', [
+    '$scope', 'ArticlesService', 'UserInfoService', '$routeParams', '$sce', '$location', '$anchorScroll', function ($scope, ArticlesService, UserInfoService, $routeParams, $sce, $location, $anchorScroll) {
+        $scope.articleId = $routeParams.articleId;
+        $scope.email = '';
+        $scope.trustSrc = function (url) {
+            return $sce.trustAsResourceUrl(url);
+        }
+        $scope.article = ArticlesService.getArticle($scope.articleId);
 
-    // call $anchorScroll()
-    $anchorScroll();
-}]);
+        $scope.saveEmail = function () {
+            UserInfoService.save({'email':$scope.email},function(){
+                $scope.email = '';
+            });
+        }
+        $location.hash('content');
+
+        // call $anchorScroll()
+        $anchorScroll();
+    }]);

@@ -9,5 +9,5 @@ app.service('ArticlesService', ['$resource', function ($resource) {
         return $resource('articles/' + articleId, {}, {
             query: {method: 'GET', params: {}, isArray: false}
         }).query();
-    }
+    };
 }]);
