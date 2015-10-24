@@ -4,6 +4,7 @@ package com.amt.entities;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -18,7 +19,8 @@ public class ArticleEntity {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "article_no_seq", allocationSize = 1, sequenceName = "article_no_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "article_no_seq")
     private Long id;
     @Column(name = "content")
     private String content;
@@ -132,5 +134,18 @@ public class ArticleEntity {
                 .append(type)
                 .append(keyWords)
                 .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("id", id)
+                .append("content", content)
+                .append("title", title)
+                .append("author", author)
+                .append("submissionDate", submissionDate)
+                .append("url", url)
+                .append("type", type)
+                .toString();
     }
 }

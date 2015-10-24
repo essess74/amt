@@ -107,9 +107,12 @@
                 <!-- end title -->
             </div>
             <div class="widget">
-                <form action="#" class="search_form">
-                    <input type="text" class="form-control" placeholder="إبحث في الموقع">
-                </form>
+                <div class="newsletter_widget">
+                    <form action="#" class="search_form">
+                        <input type="text" class="form-control" ng-model="keyWords" placeholder="إبحث في الموقع">
+                        <a href="#article/{{keyWords}}" class="btn btn-primary pull-right">إشتراك</a>
+                    </form>
+                </div>
                 <!-- end search form -->
             </div>
             <div class="widget">
@@ -146,7 +149,8 @@
                         الإلكتروني. الإشتراك مجاني!</p>
 
                     <form action="#" class="newsletter_form">
-                        <input type="email" class="form-control" ng-model="email" placeholder="الرّجاء إدخال البريد الإلكتروني">
+                        <input type="email" class="form-control" ng-model="email"
+                               placeholder="الرّجاء إدخال البريد الإلكتروني">
                         <a href="" ng-click="saveEmail()" class="btn btn-primary pull-right">إشتراك</a>
                     </form>
                 </div>

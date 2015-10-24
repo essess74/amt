@@ -2,6 +2,7 @@ app.controller('ArticleCtrl', [
     '$scope', 'ArticlesService', 'UserInfoService', '$routeParams', '$sce', '$location', '$anchorScroll', function ($scope, ArticlesService, UserInfoService, $routeParams, $sce, $location, $anchorScroll) {
         $scope.articleId = $routeParams.articleId;
         $scope.email = '';
+        $scope.keyWords= '';
         $scope.trustSrc = function (url) {
             return $sce.trustAsResourceUrl(url);
         }
@@ -11,9 +12,7 @@ app.controller('ArticleCtrl', [
             UserInfoService.save({'email':$scope.email},function(){
                 $scope.email = '';
             });
-        }
+        };
         $location.hash('content');
-
-        // call $anchorScroll()
         $anchorScroll();
     }]);

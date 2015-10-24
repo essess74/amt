@@ -117,6 +117,9 @@
         }).when('/article/:articleId', {
             templateUrl: 'pages/article.html',
             controller: 'ArticleCtrl'
+        }).when('/article/:keyWords', {
+            templateUrl: 'pages/search.html',
+            controller: 'SearchCtrl'
         });
 
     });
