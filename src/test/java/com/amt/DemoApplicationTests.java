@@ -26,7 +26,8 @@ public class DemoApplicationTests {
 
     @After
     public void tearDown() throws Exception {
-        userInfoRepository.delete(KINGKONG_EMAIL_DOMAIN);
+        if (userInfoRepository.exists(KINGKONG_EMAIL_DOMAIN))
+            userInfoRepository.delete(KINGKONG_EMAIL_DOMAIN);
     }
 
     @Test(expected = TransactionSystemException.class)
