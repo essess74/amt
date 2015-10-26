@@ -10,9 +10,15 @@ app.service('ArticlesService', ['$resource', function ($resource) {
             query: {method: 'GET', params: {}, isArray: false}
         }).query();
     };
-    this.getArticlesWithKeywords = function(keyWords){
-        return $resource('articles/' + keyWords, {}, {
-            query: {method: 'GET', params: {}, isArray: false}
+    this.getArticlesWithKeywords = function (keyWords, page) {
+        page = page || 0;
+        return $resource('articles/search', {}, {
+            query: {
+                method: 'GET', params: {
+                    'keyWords': keyWords,
+                    'page': page
+                }, isArray: false
+            }
         }).query();
     };
 }]);

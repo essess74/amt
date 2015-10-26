@@ -1,1 +1,113 @@
-{{articles}}
+<section class="blog-wrapper">
+    <div class="container">
+        <div id="content" class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="blog-masonry">
+                    <div class="col-lg-6 first" ng-repeat="article in articles.content">
+                        <div class="blog-carousel">
+                            <div ng-switch on="article.type">
+                                <div class="entry" ng-switch-when="IMG">
+                                    <img ng-src="{{article.url}}" alt="" class="img-responsive">
+
+                                    <div class="magnifier">
+                                        <div class="buttons">
+                                            <a class="st" rel="bookmark" href=""><span class="fa fa-twitter"></span></a>
+                                            <a class="sg" rel="bookmark" href=""><span
+                                                    class="fa fa-facebook"></span></a>
+                                        </div>
+                                    </div>
+                                    <div class="post-type">
+                                        <i class="fa fa-picture-o"></i>
+                                    </div>
+                                </div>
+                                <div class="entry" ng-switch-when="VID">
+                                    <iframe class="vimeo_video" ng-src="{{trustSrc(article.url)}}" width="500"
+                                            height="281"></iframe>
+                                    <div class="post-type">
+                                        <i class="fa fa-play"></i>
+                                    </div>
+                                </div>
+                                <div class="entry" ng-switch-when="SND">
+                                    <iframe class="soundcloud" height="166"
+                                            ng-src="{{trustSrc(article.url)}}"></iframe>
+                                    <div class="post-type">
+                                        <i class="fa fa-music"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="blog-carousel-header">
+                                <h3><a title="" ng-href="#article/{{article.id}}">{{article.title}}</a></h3>
+                                    <div class="blog-carousel-meta">
+                                    <span><i class="fa fa-calendar"></i><a>{{article.submissionDate|date:'MM/dd/yyyy'}}</a></span>
+                                    <span><i class="fa fa-comment"></i> <a href="#">0 تعليقات</a></span>
+                                    <span><i class="fa fa-user"></i> <a href="#">مسؤول الموقع</a></span>
+                                </div><!-- end blog-carousel-meta -->
+                            </div><!-- end blog-carousel-header -->
+                            <div class="blog-carousel-desc">
+                                <p ng-bind-html='article.content|limitTo:50'></p>
+                            </div>
+                        </div><!-- end blog-carousel -->
+                    </div>
+
+                </div><!-- end blog-masonry -->
+
+                <div class="clearfix"></div>
+
+                <hr>
+
+                <div class="pagination_wrapper">
+                    <!-- Pagination Normal -->
+                    <ul class="pagination">
+                        <li><a href="#">»</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">«</a></li>
+                    </ul>
+                </div><!-- end pagination_wrapper -->
+
+            </div><!-- end row -->
+        </div><!-- end content -->
+
+        <div id="sidebar" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="widget">
+                <div class="general-title">
+                    <h2>جمعيّة القضاة التونسيّين</h2><hr>
+
+                    <p>جمعيّة تُعنى بالدفاع عن ٱستقلاليّة القضاء جمعيّة تُعنى بالدفاع عن ٱستقلاليّة القضاء جمعيّة تُعنى بالدفاع عن ٱستقلاليّة القضاء. </p>
+                </div><!-- end title -->
+            </div>
+
+
+            <div class="widget">
+                <div class="title"><h2>الأقسام</h2></div>
+                <ul class="nav nav-tabs nav-stacked">
+                    <li><a href="#">البيانات</a></li>
+                    <li><a href="#">اللقاءات</a></li>
+                    <li><a href="#">الإعلامات</a></li>
+                    <li><a href="#">الندوات العلميّة</a></li>
+                    <li><a href="#">متفرّقات</a></li>
+                </ul>
+            </div><!-- end widget -->
+
+
+
+            <div class="widget">
+                <div class="title">
+                    <h3>النّشرة الإخباريّة</h3>
+                </div><!-- end title -->
+                <div class="newsletter_widget">
+                    <p>للإشتراك في النشرة الإخبارية لتلقي الأخبار والتحديثات والإصدارات الجديدة و ذلك عن طريق البريد الإلكتروني. الإشتراك مجاني!</p>
+                    <form action="#" class="newsletter_form">
+                        <input type="text" class="form-control" placeholder="الرّجاء إدخال البريد الإلكتروني">
+                        <a href="#" class="btn btn-primary pull-right">إشتراك</a>
+                    </form><!-- end newsletter form -->
+                </div>
+            </div><!-- end widget -->
+
+
+        </div><!-- end content -->
+    </div><!-- end container -->
+</section>

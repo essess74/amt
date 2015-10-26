@@ -1,14 +1,10 @@
 package com.amt.controllers;
 
-import com.amt.entities.KeyWordEntity;
 import com.amt.repositories.ArticleRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 
@@ -34,12 +30,10 @@ public class ArticleController {
         return articleRepository.findOne(id);
     }
 
-    @RequestMapping("/articles/search/{keyWords}")
+    @RequestMapping(value = "/articles/search", method = RequestMethod.GET)
     public
     @ResponseBody
-    Object getArticlesWithKeyWords(@PathVariable("keyWords") String keyWords) {
-        //return articleRepository.findByKeyWordsIn(Arrays.asList(StringUtils.split(keyWords, ",")).forEach(x -> new KeyWordEntity(x)), new PageRequest(0, 10));
-        //return articleRepository.findOne(id);
-        return null;
+    Object getArticlesWithKeyWords(@RequestParam("keyWords") String keyWords, @RequestParam("page") Integer page) {
+        return articleRepository.findByKeyWordsIn(Arrays.asList(StringUtils.split(keyWords, ",")), new PageRequest(page, 10));
     }
 }

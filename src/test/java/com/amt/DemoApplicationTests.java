@@ -44,10 +44,12 @@ public class DemoApplicationTests {
 
     @Autowired
     private KeyWordRepository keyWordRepository;
+    ArticleEntity articleEntity;
+    ArticleEntity articleEntity2;
 
     @Before
     public void setUp() throws Exception {
-        ArticleEntity articleEntity = generateArticle("title", "author", "URL", "Content", "VID");
+        articleEntity = generateArticle("title", "author", "URL", "Content", "VID");
         articleRepository.save(articleEntity);
         for (int i = 0; i < 3; i++) {
             KeyWordEntity keyWordEntity = new KeyWordEntity();
@@ -55,7 +57,7 @@ public class DemoApplicationTests {
             keyWordEntity.setKeyWord("keyword" + i);
             keyWordRepository.save(keyWordEntity);
         }
-        ArticleEntity articleEntity2 = generateArticle("title2", "author2", "URL2", "Content2", "VID");
+        articleEntity2 = generateArticle("title2", "author2", "URL2", "Content2", "VID");
         articleRepository.save(articleEntity2);
         for (int i = 2; i < 5; i++) {
             KeyWordEntity keyWordEntity = new KeyWordEntity();
@@ -68,8 +70,8 @@ public class DemoApplicationTests {
     @After
     public void tearDown() throws Exception {
         keyWordRepository.deleteAll();
-        articleRepository.delete(generateArticle("title", "author", "URL", "Content", "VID"));
-        articleRepository.delete(generateArticle("title2", "author2", "URL2", "Content2", "VID"));
+        articleRepository.delete(articleEntity.getId());
+        articleRepository.delete(articleEntity2.getId());
         if (userInfoRepository.exists(KINGKONG_EMAIL_DOMAIN))
             userInfoRepository.delete(KINGKONG_EMAIL_DOMAIN);
     }
