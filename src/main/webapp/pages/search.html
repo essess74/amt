@@ -3,7 +3,7 @@
         <div id="content" class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
             <div class="row">
                 <div class="blog-masonry">
-                    <div class="col-lg-6 first" ng-repeat="article in articles.content">
+                    <div class="col-lg-6" ng-class="{last: $odd, first: $even}" ng-repeat="article in articles.content">
                         <div class="blog-carousel">
                             <div ng-switch on="article.type">
                                 <div class="entry" ng-switch-when="IMG">
@@ -21,8 +21,7 @@
                                     </div>
                                 </div>
                                 <div class="entry" ng-switch-when="VID">
-                                    <iframe class="vimeo_video" ng-src="{{trustSrc(article.url)}}" width="500"
-                                            height="281"></iframe>
+                                    <iframe class="youtube_video" ng-src="{{trustSrc(article.url)}}"></iframe>
                                     <div class="post-type">
                                         <i class="fa fa-play"></i>
                                     </div>
@@ -58,13 +57,9 @@
                 <div class="pagination_wrapper">
                     <!-- Pagination Normal -->
                     <ul class="pagination">
-                        <li><a href="#">»</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">«</a></li>
+                        <li><a href="" ng-click="fetchPage(0);">»</a></li>
+                        <li ng-class="{active: page == articles.number +1}" ng-repeat="page in range(articles.totalPages)"><a href="" ng-click="fetchPage(page-1);">{{page}}</a></li>
+                        <li><a href="" ng-click="fetchPage(articles.totalPages-1);">«</a></li>
                     </ul>
                 </div><!-- end pagination_wrapper -->
 
@@ -79,7 +74,15 @@
                     <p>جمعيّة تُعنى بالدفاع عن ٱستقلاليّة القضاء جمعيّة تُعنى بالدفاع عن ٱستقلاليّة القضاء جمعيّة تُعنى بالدفاع عن ٱستقلاليّة القضاء. </p>
                 </div><!-- end title -->
             </div>
-
+            <div class="widget">
+                <div class="newsletter_widget">
+                    <form action="#" class="search_form">
+                        <input type="text" class="form-control" ng-model="keyWords" placeholder="إبحث في الموقع">
+                        <a href="#article/search/{{keyWords}}" class="btn btn-primary pull-right">{{'page.button.search' | translate}}</a>
+                    </form>
+                </div>
+                <!-- end search form -->
+            </div>
 
             <div class="widget">
                 <div class="title"><h2>الأقسام</h2></div>

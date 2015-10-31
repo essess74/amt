@@ -2,7 +2,7 @@
     <div class="container">
         <div class="col-lg-12">
             <ul class="breadcrumb pull-right">
-                <li><a href="#/">الرئيسيّة</a></li>
+                <li><a href="/">الرئيسيّة</a></li>
                 <li class="active">{{article.title}}</li>
             </ul>
             <h2>أخبار</h2>
@@ -34,7 +34,7 @@
                                     </div>
                                 </div>
                                 <div class="entry" ng-switch-when="VID">
-                                    <iframe class="vimeo_video" ng-src="{{trustSrc(article.url)}}" width="500"
+                                    <iframe class="youtube_video" ng-src="{{trustSrc(article.url)}}" width="500"
                                             height="281"></iframe>
                                     <div class="post-type">
                                         <i class="fa fa-play"></i>

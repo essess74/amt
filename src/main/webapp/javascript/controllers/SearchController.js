@@ -4,14 +4,18 @@ app.controller('SearchCtrl', [
 
         $scope.trustSrc = function (url) {
             return $sce.trustAsResourceUrl(url);
-        }
-        $scope.articles = ArticlesService.getArticlesWithKeywords($scope.keyWords);
-
-        $scope.saveEmail = function () {
-            UserInfoService.save({'email': $scope.email}, function () {
-                $scope.email = '';
-            });
         };
-        $location.hash('content');
-        $anchorScroll();
+        $scope.fetchPage = function (page){
+            $scope.articles = ArticlesService.getArticlesWithKeywords($scope.keyWords,page);
+            $location.hash('content');
+            $anchorScroll();
+        };
+        $scope.fetchPage(0);
+        $scope.range = function(n) {
+            var toReturn = [];
+            for(var i = 1; i<= n;i++){
+                toReturn.push(i);
+            }
+            return toReturn;
+        };
     }]);
