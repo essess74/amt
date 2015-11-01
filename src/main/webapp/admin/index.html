@@ -26,6 +26,7 @@
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-4dp" md-component-id="left"
                 md-is-locked-open="$mdMedia('gt-sm')">
         <md-button class="md-accent" href="#articles">Articles</md-button>
+        <md-button class="md-accent" href="#addArticle">Ajouter Article</md-button>
     </md-sidenav>
     <div layout="column" flex id="content">
         <md-content layout="column" flex class="md-padding">
@@ -44,7 +45,7 @@
 <script src="js/ng-flow/dist/ng-flow.min.js"></script>
 <script src="js/flow.js/dist/flow.min.js"></script>
 <script>
-    var app = angular.module('StarterApp', ['ngMaterial', 'ngRoute', 'ngResource', 'ngSanitize','flow']);
+    var app = angular.module('StarterApp', ['ngMaterial', 'ngRoute', 'ngResource', 'ngSanitize', 'flow']);
 
     app.config(function ($routeProvider) {
         $routeProvider.when('/', {
@@ -55,6 +56,9 @@
         }).when('/editArticle/:articleId', {
             templateUrl: 'pages/edit.html',
             controller: 'EditArticleCtrl'
+        }).when('/addArticle', {
+            templateUrl: 'pages/add.html',
+            controller: 'AddArticleCtrl'
         });
     });
     app.controller('AppController', function ($mdSidenav) {

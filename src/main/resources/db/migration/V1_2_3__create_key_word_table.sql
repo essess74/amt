@@ -9,6 +9,6 @@ CREATE TABLE key_word (
   key_word   VARCHAR(30),
   article_id INTEGER NOT NULL,
   CONSTRAINT key_word_article_id_fkey FOREIGN KEY (article_id) REFERENCES article (id)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION
+  ON DELETE CASCADE
+  ON UPDATE CASCADE
 );

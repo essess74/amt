@@ -15,4 +15,10 @@ app.service('ArticlesService', ['$resource', function ($resource) {
             'update': {method: 'PUT'}
         }).update(article);
     };
+    this.addArticle = function (article) {
+        return $resource('articles', {}).save(article);
+    };
+    this.deleteArticle = function (article) {
+        return $resource('articles/'+article.id, {}).delete();
+    };
 }]);
