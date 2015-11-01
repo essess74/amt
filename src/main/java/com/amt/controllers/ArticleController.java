@@ -2,6 +2,8 @@ package com.amt.controllers;
 
 import com.amt.entities.ArticleEntity;
 import com.amt.repositories.ArticleRepository;
+import com.amt.repositories.ImageRepository;
+import com.amt.repositories.KeyWordRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
@@ -12,12 +14,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Vector;
 
 /**
  * Created by MedMalek on 18/10/2015.
@@ -26,25 +26,35 @@ import java.util.Vector;
 @Repository
 public class ArticleController {
 
+    private static final Integer PAGE_SIZE = new Integer(10);
+    private static final String BASE_QUERY = "select distinct art.* from article art, key_word key where ";
 
     @PersistenceContext
     private EntityManager em;
 
     @Autowired
-    ArticleRepository articleRepository;
-    private static final Integer PAGE_SIZE = new Integer(10);
-    private static final String BASE_QUERY = "select distinct art.* from article art, key_word key where ";
+    private ArticleRepository articleRepository;
+    @Autowired
+    private KeyWordRepository keyWordRepository;
+    @Autowired
+    private ImageRepository imageRepository;
 
     @RequestMapping("/articles")
     public
     @ResponseBody Object getAllArticles() {
-        return articleRepository.findAll();
+        Iterable<ArticleEntity> toReturn = articleRepository.findAll(new Sort(Sort.Direction.DESC, "submissionDate"));
+        toReturn.forEach(articleEntity -> articleEntity.setImage(articleEntity.getImageId() == null ? null : imageRepository.findOne(articleEntity.getImageId()).getImage()));
+        return toReturn;
     }
 
     @RequestMapping("/articles/{id}")
     public
     @ResponseBody Object getArticle(@PathVariable("id") Long id) {
-        return articleRepository.findOne(id);
+        ArticleEntity article = articleRepository.findOne(id);
+        article.setKeyWords(keyWordRepository.findByArticleId(id));
+        if (article.getImageId() != null)
+            article.setImage(imageRepository.findOne(article.getImageId()).getImage());
+        return article;
     }
 
     @RequestMapping(value = "/articles/search",
@@ -60,6 +70,7 @@ public class ArticleController {
         String query = BASE_QUERY + StringUtils.join(queryPredicates, " or ") + " order by submission_date desc";
 
         List<ArticleEntity> results = em.createNativeQuery(query, ArticleEntity.class).setMaxResults(PAGE_SIZE).setFirstResult(page * PAGE_SIZE).getResultList();
+        results.forEach(articleEntity -> articleEntity.setImage(articleEntity.getImageId() == null ? null : imageRepository.findOne(articleEntity.getImageId()).getImage()));
         BigInteger count = (BigInteger) em.createNativeQuery("select count(*) from ( " + query + " ) as count").getSingleResult();
         return new PageImpl<ArticleEntity>(results, new Pageable() {
             @Override public int getPageNumber() {
@@ -94,6 +105,5 @@ public class ArticleController {
                 return false;
             }
         }, count.longValue());
-        //return articleRepository.findAll(spec.build(), new PageRequest(page, PAGE_SIZE));
     }
 }

@@ -11,5 +11,6 @@ CREATE TABLE article (
   url             VARCHAR(200) NOT NULL,
   type            VARCHAR(3)   NOT NULL,
   author          VARCHAR(40)  NOT NULL,
+  image_id        INTEGER,
   submission_date DATE                                    DEFAULT CURRENT_DATE
 );

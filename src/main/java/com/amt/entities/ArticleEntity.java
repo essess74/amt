@@ -1,12 +1,12 @@
 package com.amt.entities;
 
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -15,12 +15,15 @@ import java.util.List;
  */
 @Entity
 @Table(name = "ARTICLE")
-public class ArticleEntity {
+public class ArticleEntity implements Serializable {
 
     @Id
     @Column(name = "id")
-    @SequenceGenerator(name = "article_no_seq", allocationSize = 1, sequenceName = "article_no_seq")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "article_no_seq")
+    @SequenceGenerator(name = "article_no_seq",
+                       allocationSize = 1,
+                       sequenceName = "article_no_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+                    generator = "article_no_seq")
     private Long id;
     @Column(name = "content")
     private String content;
@@ -34,9 +37,12 @@ public class ArticleEntity {
     private String url;
     @Column(name = "type")
     private String type;
-    @OneToMany(mappedBy = "article")
-    @JsonManagedReference
-    private List<KeyWordEntity> keyWords;
+    @Column(name = "image_id")
+    private Long imageId;
+
+    private transient byte[] image;
+
+    private transient List<KeyWordEntity> keyWords;
 
     public Long getId() {
         return id;
@@ -102,8 +108,23 @@ public class ArticleEntity {
         this.keyWords = keyWords;
     }
 
-    @Override
-    public boolean equals(Object o) {
+    public Long getImageId() {
+        return imageId;
+    }
+
+    public void setImageId(Long imageId) {
+        this.imageId = imageId;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    @Override public boolean equals(Object o) {
         if (this == o) return true;
 
         if (!(o instanceof ArticleEntity)) return false;
@@ -118,12 +139,11 @@ public class ArticleEntity {
                 .append(submissionDate, that.submissionDate)
                 .append(url, that.url)
                 .append(type, that.type)
-                .append(keyWords, that.keyWords)
+                .append(imageId, that.imageId)
                 .isEquals();
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         return new HashCodeBuilder(17, 37)
                 .append(id)
                 .append(content)
@@ -132,7 +152,7 @@ public class ArticleEntity {
                 .append(submissionDate)
                 .append(url)
                 .append(type)
-                .append(keyWords)
+                .append(imageId)
                 .toHashCode();
     }
 

@@ -1,6 +1,5 @@
 package com.amt.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -21,11 +20,8 @@ public class KeyWordEntity {
     private Long id;
     @Column(name = "KEY_WORD")
     private String keyWord;
-
-    @ManyToOne
-    @JoinColumn(name = "article_id")
-    @JsonBackReference
-    private ArticleEntity article;
+    @Column(name = "ARTICLE_ID")
+    private Long articleId;
 
     public Long getId() {
         return id;
@@ -43,16 +39,15 @@ public class KeyWordEntity {
         this.keyWord = keyWord;
     }
 
-    public ArticleEntity getArticle() {
-        return article;
+    public Long getArticleId() {
+        return articleId;
     }
 
-    public void setArticle(ArticleEntity article) {
-        this.article = article;
+    public void setArticleId(Long articleId) {
+        this.articleId = articleId;
     }
 
-    @Override
-    public boolean equals(Object o) {
+    @Override public boolean equals(Object o) {
         if (this == o) return true;
 
         if (!(o instanceof KeyWordEntity)) return false;
@@ -62,16 +57,15 @@ public class KeyWordEntity {
         return new EqualsBuilder()
                 .append(id, that.id)
                 .append(keyWord, that.keyWord)
-                .append(article, that.article)
+                .append(articleId, that.articleId)
                 .isEquals();
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         return new HashCodeBuilder(17, 37)
                 .append(id)
                 .append(keyWord)
-                .append(article)
+                .append(articleId)
                 .toHashCode();
     }
 }

@@ -7,7 +7,7 @@
                         <div class="blog-carousel">
                             <div ng-switch on="article.type">
                                 <div class="entry" ng-switch-when="IMG">
-                                    <img ng-src="{{article.url}}" alt="" class="img-responsive">
+                                    <img data-ng-src="data:image/PNG;base64,{{article.image}}" alt="" class="img-responsive">
 
                                     <div class="magnifier">
                                         <div class="buttons">

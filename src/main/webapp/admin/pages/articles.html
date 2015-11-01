@@ -1,0 +1,46 @@
+<style>
+    .checkboxDemo1 div {
+        clear: both;
+    }
+
+    .checkboxDemo1 md-checkbox {
+        float: left;
+    }
+
+    p {
+        padding-left: 8px;
+    }
+
+    fieldset.standard {
+        border-style: solid;
+        border-width: 1px;
+        width: 100%;
+    }
+
+    legend {
+        color: #3F51B5;
+    }
+
+    legend code {
+        color: #3F51B5;
+        font-weight: normal;
+    }
+
+    .ipsum {
+        color: saddlebrown;
+    }
+</style>
+<md-list-item ng-repeat="item in articles._embedded.articleEntities">
+
+    <fieldset class="standard" dir="rtl">
+        <legend style="font-weight: bold"><a ng-href="#editArticle/{{item.id}}">{{ item.title }}</a></legend>
+        <div layout="row">
+            <div flex="1">
+                <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1"></md-checkbox>
+            </div>
+            <div flex="9" style="margin: 10px">
+                <p ng-bind-html='item.content|limitTo:200'></p>
+            </div>
+        </div>
+    </fieldset>
+</md-list-item>
