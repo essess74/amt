@@ -124,6 +124,11 @@ public class ArticleEntity implements Serializable {
         this.image = image;
     }
 
+    @PrePersist
+    public void prePersist() {
+        submissionDate = submissionDate == null ? new Date() : submissionDate;
+    }
+
     @Override public boolean equals(Object o) {
         if (this == o) return true;
 
