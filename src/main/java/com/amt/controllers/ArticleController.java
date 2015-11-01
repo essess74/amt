@@ -66,7 +66,7 @@ public class ArticleController {
             @RequestParam(value = "page",
                           defaultValue = "0") Integer page) {
         List<String> queryPredicates = new ArrayList<>();
-        Arrays.asList(StringUtils.split(keyWords, ",")).forEach(w -> queryPredicates.add("(art.title like '%" + w + "%') or (art.id = key.article_id and key.key_word = '" + w + "')"));
+        Arrays.asList(StringUtils.split(keyWords, ",")).forEach(w -> queryPredicates.add("(upper(art.title) like '%" + w.toUpperCase() + "%') or (art.id = key.article_id and key.key_word = '" + w + "')"));
         String query = BASE_QUERY + StringUtils.join(queryPredicates, " or ") + " order by submission_date desc";
 
         List<ArticleEntity> results = em.createNativeQuery(query, ArticleEntity.class).setMaxResults(PAGE_SIZE).setFirstResult(page * PAGE_SIZE).getResultList();
