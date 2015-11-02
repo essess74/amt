@@ -1,7 +1,7 @@
 app.service('ArticlesService', ['$resource', function ($resource) {
     this.getAllArticles = function () {
         return $resource('articles', {}, {
-            query: {method: 'GET', params: {}, isArray: false}
+            query: {method: 'GET', params: {sort: 'submissionDate,DESC'}, isArray: false}
         }).query();
     };
     this.getArticle = function (articleId) {
@@ -19,6 +19,6 @@ app.service('ArticlesService', ['$resource', function ($resource) {
         return $resource('articles', {}).save(article);
     };
     this.deleteArticle = function (article) {
-        return $resource('articles/'+article.id, {}).delete();
+        return $resource('articles/' + article.id, {}).delete();
     };
 }]);

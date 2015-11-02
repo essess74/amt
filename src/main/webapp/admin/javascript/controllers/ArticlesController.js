@@ -29,6 +29,15 @@ app.controller('EditArticleCtrl', ['$scope', 'ArticlesService', '$sce', '$routeP
     $scope.someHandlerMethod = function (a, b, c) {
         $scope.article.imageId = b;
     };
+    $scope.tinymceOptions = {
+        onChange: function(e) {
+            // put logic here for keypress and cut/paste changes
+        },
+        inline: false,
+        plugins : 'autolink link image lists charmap image preview',
+        skin: 'lightgray',
+        theme : 'modern'
+    };
 }]);
 app.controller('AddArticleCtrl', ['$scope', 'ArticlesService', '$sce', '$routeParams', '$location', function ($scope, ArticlesService, $sce, $routeParams, $location) {
     $scope.article = {};//ArticlesService.getArticle($scope.articleId);
@@ -49,5 +58,14 @@ app.controller('AddArticleCtrl', ['$scope', 'ArticlesService', '$sce', '$routePa
     };
     $scope.someHandlerMethod = function (a, b, c) {
         $scope.article.imageId = b;
+    };
+    $scope.tinymceOptions = {
+        onChange: function(e) {
+            // put logic here for keypress and cut/paste changes
+        },
+        inline: false,
+        plugins : 'autolink link image lists charmap image preview',
+        skin: 'lightgray',
+        theme : 'modern'
     };
 }]);

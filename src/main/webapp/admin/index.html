@@ -44,8 +44,11 @@
 <script src="js/angular-sanitize/angular-sanitize.min.js"></script>
 <script src="js/ng-flow/dist/ng-flow.min.js"></script>
 <script src="js/flow.js/dist/flow.min.js"></script>
+<script src="js/tinymce/tinymce.min.js"></script>
+<script src="js/angular-ui-tinymce/src/tinymce.js"></script>
+
 <script>
-    var app = angular.module('StarterApp', ['ngMaterial', 'ngRoute', 'ngResource', 'ngSanitize', 'flow']);
+    var app = angular.module('StarterApp', ['ngMaterial', 'ngRoute', 'ngResource', 'ngSanitize', 'flow','ui.tinymce']);
 
     app.config(function ($routeProvider) {
         $routeProvider.when('/', {
@@ -60,6 +63,13 @@
             templateUrl: 'pages/add.html',
             controller: 'AddArticleCtrl'
         });
+    });
+    app.config(function ($mdThemingProvider) {
+        $mdThemingProvider.theme('default')
+                .primaryPalette('light-blue')
+                .accentPalette('blue').backgroundPalette('grey');
+        //red, pink, purple, deep-purple, indigo, blue, light-blue, cyan, teal, green, light-green, lime, yellow, amber, orange, deep-orange, brown, grey, blue-grey
+        $mdThemingProvider.setDefaultTheme('altTheme');
     });
     app.controller('AppController', function ($mdSidenav) {
         var vm = this;

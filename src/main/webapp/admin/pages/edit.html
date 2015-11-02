@@ -50,7 +50,9 @@
         </div>
         <md-input-container>
             <label>Contenu</label>
-            <textarea ng-model="article.content" dir="rtl"></textarea>
+            <textarea ui-tinymce="tinymceOptions" ng-model="article.content" dir="rtl"></textarea>
+            <!--<text-angular ng-model="article.content" dir="rtl"></text-angular>-->
+            <!--<textarea ng-model="article.content" dir="rtl"></textarea>-->
         </md-input-container>
     </md-content>
     <md-button class="md-raised md-primary" ng-click="saveArticle(editfrom)">Enregistrer</md-button>

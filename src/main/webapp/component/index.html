@@ -2,9 +2,10 @@
     <div class="tp-banner-container">
         <div class="fullwidthbanner">
             <ul><!-- SLIDE  -->
-                <li data-transition="fade" data-slotamount="7" data-masterspeed="1500" ng-repeat="slide in slides" last-element-in-repeat>
-                    <img ng-src="{{slide.url}}" alt="slidebg1" data-bgfit="cover" data-bgposition="left top"
+                <li data-transition="fade" data-slotamount="7" data-masterspeed="1500" ng-repeat="slide in slides | limitTo:6" last-element-in-repeat>
+                    <img data-ng-src="data:image/PNG;base64,{{slide.image}}" alt="slidebg1" data-bgfit="cover" data-bgposition="left top"
                          data-bgrepeat="no-repeat">
+                    <div class="carousel-caption" dir="ltr" data-x="700" data-y="400" data-speed="300" data-start="2000"><a ng-href="#article/{{slide.id}}"><h1 style="color: #f7c221" class="">{{slide.title}}</h1></a></div>
                 </li>
             </ul>
             <div class="tp-bannertimer"></div>

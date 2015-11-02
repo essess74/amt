@@ -35,9 +35,6 @@
     <fieldset class="standard" dir="rtl">
         <legend style="font-weight: bold"><a ng-href="#editArticle/{{item.id}}">{{ item.title }}</a></legend>
         <div layout="row">
-            <div flex="1">
-                <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1"></md-checkbox>
-            </div>
             <div flex="9" style="margin: 10px">
                 <p ng-bind-html='item.content|limitTo:200'></p>
             </div>
