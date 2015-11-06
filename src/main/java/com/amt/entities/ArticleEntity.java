@@ -39,6 +39,8 @@ public class ArticleEntity implements Serializable {
     private String type;
     @Column(name = "image_id")
     private Long imageId;
+    @Column(name = "category")
+    private String category;
 
     private transient byte[] image;
 
@@ -124,6 +126,14 @@ public class ArticleEntity implements Serializable {
         this.image = image;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     @PrePersist
     public void prePersist() {
         submissionDate = submissionDate == null ? new Date() : submissionDate;
@@ -145,6 +155,9 @@ public class ArticleEntity implements Serializable {
                 .append(url, that.url)
                 .append(type, that.type)
                 .append(imageId, that.imageId)
+                .append(category, that.category)
+                .append(image, that.image)
+                .append(keyWords, that.keyWords)
                 .isEquals();
     }
 
@@ -158,6 +171,9 @@ public class ArticleEntity implements Serializable {
                 .append(url)
                 .append(type)
                 .append(imageId)
+                .append(category)
+                .append(image)
+                .append(keyWords)
                 .toHashCode();
     }
 
