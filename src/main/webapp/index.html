@@ -120,6 +120,9 @@
         }).when('/article/search/:keyWords', {
             templateUrl: 'pages/search.html',
             controller: 'SearchCtrl'
+        }).when('/article/search/cat/:category', {
+            templateUrl: 'pages/search.html',
+            controller: 'SearchCtrl'
         });
 
     });
@@ -132,5 +135,7 @@
 <script src="javascript/services/ArticlesService.js"></script>
 <script src="javascript/services/SlidesService.js"></script>
 <script src="javascript/services/UserInfoService.js"></script>
+<script src="javascript/services/CategoryService.js"></script>
+
 </body>
 </html>

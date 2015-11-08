@@ -87,11 +87,7 @@
             <div class="widget">
                 <div class="title"><h2>الأقسام</h2></div>
                 <ul class="nav nav-tabs nav-stacked">
-                    <li><a href="#">البيانات</a></li>
-                    <li><a href="#">اللقاءات</a></li>
-                    <li><a href="#">الإعلامات</a></li>
-                    <li><a href="#">الندوات العلميّة</a></li>
-                    <li><a href="#">متفرّقات</a></li>
+                    <li ng-repeat="cat in categories"><a ng-href="#article/search/cat/{{cat.category}}">{{cat.category}}</a></li>
                 </ul>
             </div><!-- end widget -->
 

@@ -17,4 +17,6 @@ public interface ArticleRepository extends PagingAndSortingRepository<ArticleEnt
     Page<ArticleEntity> findById(Long id, Pageable page);
 
     List<ArticleEntity> findTop6ByTypeOrderBySubmissionDateDesc(String type);
+
+    Page<ArticleEntity> findByCategoryOrderBySubmissionDateDesc(String category, Pageable page);
 }

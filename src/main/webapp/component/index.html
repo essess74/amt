@@ -18,79 +18,20 @@
     <div class="container">
         <div class="widget">
             <div class="title">
-                <!-- <h2>Life Style</h2> -->
             </div>
-            <!-- end title -->
-
-            <div class="row">
-                <div class="col-lg-3">
+            <div class="row" >
+                <div class="col-lg-3" ng-repeat="cat in categories">
                     <div class="cat_widget">
                         <div class="entry">
                             <img class="img-responsive" src="demos/lifestyle_01.jpg" alt="">
-
                             <div class="magnifier">
                                 <div class="buttons">
-                                    <a href="#"><h3>بيانات</h3></a>
-                                </div>
-                                <!-- end buttons -->
-                            </div>
-                            <!-- end magnifier -->
-                        </div>
-                        <!-- end entry -->
-                    </div>
-                    <!-- end cat_widget -->
-                </div>
-                <!-- end col-lg-3 -->
-                <div class="col-lg-3">
-                    <div class="cat_widget">
-                        <div class="entry">
-                            <img class="img-responsive" src="demos/lifestyle_02.jpg" alt="">
-
-                            <div class="magnifier">
-                                <div class="buttons">
-                                    <a href="#"><h3>إعلامات</h3></a>
-                                </div>
-                                <!-- end buttons -->
-                            </div>
-                            <!-- end magnifier -->
-                        </div>
-                        <!-- end entry -->
-                    </div>
-                    <!-- end cat_widget -->
-                </div>
-                <!-- end col-lg-3 -->
-                <div class="col-lg-3">
-                    <div class="cat_widget">
-                        <div class="entry">
-                            <img class="img-responsive" src="demos/lifestyle_03.jpg" alt="">
-
-                            <div class="magnifier">
-                                <div class="buttons">
-                                    <a href="#"><h3>ندوات</h3></a>
-                                </div>
-                                <!-- end buttons -->
-                            </div>
-                            <!-- end magnifier -->
-                        </div>
-                        <!-- end entry -->
-                    </div>
-                    <!-- end cat_widget -->
-                </div>
-                <!-- end col-lg-3 -->
-                <div class="col-lg-3">
-                    <div class="cat_widget">
-                        <div class="entry">
-                            <img class="img-responsive" src="demos/lifestyle_04.jpg" alt="">
-
-                            <div class="magnifier">
-                                <div class="buttons">
-                                    <a href="#"><h3>متفرّقات</h3></a>
+                                    <a ng-href="#article/search/cat/{{cat.category}}"><h3>{{cat.category}}</h3></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 

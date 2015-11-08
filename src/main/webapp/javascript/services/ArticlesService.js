@@ -21,4 +21,15 @@ app.service('ArticlesService', ['$resource', function ($resource) {
             }
         }).query();
     };
+    this.getArticlesWithCategory = function (category, page) {
+        page = page || 0;
+        return $resource('articles/search/cat', {}, {
+            query: {
+                method: 'GET', params: {
+                    'category': category,
+                    'page': page
+                }, isArray: false
+            }
+        }).query();
+    };
 }]);

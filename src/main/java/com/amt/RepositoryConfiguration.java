@@ -1,6 +1,7 @@
 package com.amt;
 
 import com.amt.entities.ArticleEntity;
+import com.amt.entities.CategoryEntity;
 import org.springframework.boot.autoconfigure.data.rest.SpringBootRepositoryRestMvcConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
@@ -13,6 +14,6 @@ public class RepositoryConfiguration extends SpringBootRepositoryRestMvcConfigur
 
     @Override
     protected void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-        config.exposeIdsFor(ArticleEntity.class);
+        config.exposeIdsFor(ArticleEntity.class, CategoryEntity.class);
     }
 }

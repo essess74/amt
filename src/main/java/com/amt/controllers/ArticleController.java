@@ -7,6 +7,7 @@ import com.amt.repositories.KeyWordRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
@@ -105,5 +106,16 @@ public class ArticleController {
                 return false;
             }
         }, count.longValue());
+    }
+
+    @RequestMapping(value = "/articles/search/cat",
+                    method = RequestMethod.GET)
+    public
+    @ResponseBody Object getArticlesWithCategory(
+            @RequestParam(value = "category",
+                          defaultValue = StringUtils.EMPTY) String category,
+            @RequestParam(value = "page",
+                          defaultValue = "0") Integer page) {
+        return articleRepository.findByCategoryOrderBySubmissionDateDesc(category, new PageRequest(page, PAGE_SIZE));
     }
 }
