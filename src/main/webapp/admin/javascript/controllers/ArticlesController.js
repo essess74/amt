@@ -7,6 +7,7 @@ app.controller('ArticleCtrl', ['$scope', 'ArticlesService', '$sce', function ($s
 app.controller('EditArticleCtrl', ['$scope', 'ArticlesService', '$sce', '$routeParams', '$location', function ($scope, ArticlesService, $sce, $routeParams, $location) {
     $scope.articleId = $routeParams.articleId;
     $scope.article = ArticlesService.getArticle($scope.articleId);
+    $scope.categories = ArticlesService.getAllCategories();
     $scope.isImage = function () {
         return $scope.article.type == 'IMG';
     }
@@ -59,6 +60,7 @@ app.controller('AddArticleCtrl', ['$scope', 'ArticlesService', '$sce', '$routePa
     $scope.someHandlerMethod = function (a, b, c) {
         $scope.article.imageId = b;
     };
+    $scope.categories = ArticlesService.getAllCategories();
     $scope.tinymceOptions = {
         onChange: function(e) {
             // put logic here for keypress and cut/paste changes

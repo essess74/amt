@@ -21,4 +21,9 @@ app.service('ArticlesService', ['$resource', function ($resource) {
     this.deleteArticle = function (article) {
         return $resource('articles/' + article.id, {}).delete();
     };
+    this.getAllCategories = function () {
+        return $resource('categories', {}, {
+            query: {method: 'GET', params: {}, isArray: true}
+        }).query();
+    };
 }]);

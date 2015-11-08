@@ -21,6 +21,14 @@
             <input ng-model="article.author" placeholder="مسؤول الموقع" dir="rtl" required>
         </md-input-container>
         <md-input-container>
+            <label>Catégorie</label>
+            <md-select ng-model="article.category">
+                <md-option value="{{cat.category}}" ng-repeat="cat in categories">
+                    {{cat.category}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
             <label>Type</label>
             <md-select ng-model="article.type">
                 <md-option value="VID">

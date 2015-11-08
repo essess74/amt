@@ -6,10 +6,7 @@ import com.amt.repositories.ImageRepository;
 import com.amt.repositories.KeyWordRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
@@ -116,6 +113,8 @@ public class ArticleController {
                           defaultValue = StringUtils.EMPTY) String category,
             @RequestParam(value = "page",
                           defaultValue = "0") Integer page) {
-        return articleRepository.findByCategoryOrderBySubmissionDateDesc(category, new PageRequest(page, PAGE_SIZE));
+        Page<ArticleEntity> toReturn = articleRepository.findByCategoryOrderBySubmissionDateDesc(category, new PageRequest(page, PAGE_SIZE));
+        toReturn.getContent().forEach(articleEntity -> articleEntity.setImage(articleEntity.getImageId() == null ? null : imageRepository.findOne(articleEntity.getImageId()).getImage()));
+        return toReturn;
     }
 }

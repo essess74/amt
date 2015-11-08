@@ -16,9 +16,11 @@ public class CategoryController {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @RequestMapping("/category")
+    @RequestMapping({"/category", "/admin/categories"})
     public @ResponseBody Iterable<CategoryEntity> getAllCategories() {
         Iterable<CategoryEntity> toReturn = categoryRepository.findAll();
         return toReturn;
     }
+
+
 }
