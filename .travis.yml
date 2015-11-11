@@ -1,5 +1,5 @@
 language: java
-script: mvn clean package
+script: mvn clean package cobertura:cobertura
 jdk:
   - oraclejdk8
 addons:
