@@ -4,7 +4,7 @@ app.controller('ArticleCtrl', ['$scope', 'ArticlesService', '$sce', function ($s
         return $sce.trustAsResourceUrl(url);
     };
 }]);
-app.controller('EditArticleCtrl', ['$scope', 'ArticlesService', '$sce', '$routeParams', '$location', function ($scope, ArticlesService, $sce, $routeParams, $location) {
+app.controller('EditArticleCtrl', ['$scope', '$mdDialog', 'ArticlesService', '$sce', '$routeParams', '$location', function ($scope, $mdDialog, ArticlesService, $sce, $routeParams, $location) {
     $scope.articleId = $routeParams.articleId;
     $scope.article = ArticlesService.getArticle($scope.articleId);
     $scope.categories = ArticlesService.getAllCategories();
@@ -20,7 +20,7 @@ app.controller('EditArticleCtrl', ['$scope', 'ArticlesService', '$sce', '$routeP
             $location.path("/articles");
         }
     };
-    $scope.deleteArticle = function(){
+    $scope.deleteArticle = function () {
         ArticlesService.deleteArticle($scope.article);
         $location.path("/articles");
     };
@@ -31,13 +31,30 @@ app.controller('EditArticleCtrl', ['$scope', 'ArticlesService', '$sce', '$routeP
         $scope.article.imageId = b;
     };
     $scope.tinymceOptions = {
-        onChange: function(e) {
+        onChange: function (e) {
             // put logic here for keypress and cut/paste changes
         },
         inline: false,
-        plugins : 'autolink link image lists charmap image preview',
+        plugins: 'autolink link image lists charmap image preview',
         skin: 'lightgray',
-        theme : 'modern'
+        theme: 'modern'
+    };
+    $scope.showKeyWords = function (ev) {
+        $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'pages/keywordsdialog.tmpl.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                locals: {
+                    articleId: $scope.articleId
+                }
+            })
+            .then(function (answer) {
+                $scope.status = 'You said the information was "' + answer + '".';
+            }, function () {
+                $scope.status = 'You cancelled the dialog.';
+            });
     };
 }]);
 app.controller('AddArticleCtrl', ['$scope', 'ArticlesService', '$sce', '$routeParams', '$location', function ($scope, ArticlesService, $sce, $routeParams, $location) {
@@ -62,12 +79,24 @@ app.controller('AddArticleCtrl', ['$scope', 'ArticlesService', '$sce', '$routePa
     };
     $scope.categories = ArticlesService.getAllCategories();
     $scope.tinymceOptions = {
-        onChange: function(e) {
+        onChange: function (e) {
             // put logic here for keypress and cut/paste changes
         },
         inline: false,
-        plugins : 'autolink link image lists charmap image preview',
+        plugins: 'autolink link image lists charmap image preview',
         skin: 'lightgray',
-        theme : 'modern'
+        theme: 'modern'
     };
 }]);
+function DialogController($scope, $mdDialog, articleId, ArticlesService) {
+    $scope.keywords = ArticlesService.getKeyWordsForArticle(articleId)
+    $scope.hide = function () {
+        $mdDialog.hide();
+    };
+    $scope.cancel = function () {
+        $mdDialog.cancel();
+    };
+    $scope.answer = function (answer) {
+        $mdDialog.hide(answer);
+    };
+}

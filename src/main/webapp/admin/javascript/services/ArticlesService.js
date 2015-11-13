@@ -26,4 +26,9 @@ app.service('ArticlesService', ['$resource', function ($resource) {
             query: {method: 'GET', params: {}, isArray: true}
         }).query();
     };
+    this.getKeyWordsForArticle = function (articleId) {
+        return $resource('keywords', {}, {
+            query: {method: 'GET', params: {articleId: articleId}, isArray: true}
+        }).query();
+    }
 }]);
