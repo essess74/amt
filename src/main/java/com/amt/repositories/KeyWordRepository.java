@@ -11,4 +11,6 @@ import java.util.List;
 public interface KeyWordRepository extends CrudRepository<KeyWordEntity, Long> {
 
     List<KeyWordEntity> findByArticleId(Long articleId);
+
+    Long deleteByArticleId(Long articleId);
 }

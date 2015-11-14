@@ -1,24 +1,17 @@
 <md-dialog aria-label="Mango (Fruit)">
     <md-dialog-content style="max-width:800px;max-height:810px; ">
-        <md-chips class="custom-chips" ng-model="keywords" readonly="false">
-            <md-chip-template>
-                <span>
-                  <strong>[{{$index}}] {{$chip.keyWord}}</strong>
-                  <em>({{$chip.type}})</em>
-                </span>
-            </md-chip-template>
+        <md-chips class="custom-chips"
+                  ng-model="keywords"
+                  placeholder="Enter a tag"
+                  delete-button-label="Remove Tag"
+                  delete-hint="Press delete to remove tag"
+                  secondary-placeholder="+Tag"
+                  readonly="false">
         </md-chips>
     </md-dialog-content>
     <md-dialog-actions layout="row">
-        <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
-            More on Wikipedia
-        </md-button>
-        <span flex></span>
-        <md-button ng-click="answer('not useful')">
-            Not Useful
-        </md-button>
-        <md-button ng-click="answer('useful')" style="margin-right:20px;">
-            Useful
+        <md-button ng-click="save()" style="margin-right:20px;">
+            Enregisterer
         </md-button>
     </md-dialog-actions>
 </md-dialog>

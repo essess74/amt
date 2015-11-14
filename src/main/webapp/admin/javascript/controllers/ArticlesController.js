@@ -8,6 +8,7 @@ app.controller('EditArticleCtrl', ['$scope', '$mdDialog', 'ArticlesService', '$s
     $scope.articleId = $routeParams.articleId;
     $scope.article = ArticlesService.getArticle($scope.articleId);
     $scope.categories = ArticlesService.getAllCategories();
+    $scope.keywords = ArticlesService.getKeyWordsForArticle($scope.articleId);
     $scope.isImage = function () {
         return $scope.article.type == 'IMG';
     }
@@ -47,7 +48,8 @@ app.controller('EditArticleCtrl', ['$scope', '$mdDialog', 'ArticlesService', '$s
                 targetEvent: ev,
                 clickOutsideToClose: true,
                 locals: {
-                    articleId: $scope.articleId
+                    articleId: $scope.articleId,
+                    keywords : $scope.keywords
                 }
             })
             .then(function (answer) {
@@ -88,15 +90,16 @@ app.controller('AddArticleCtrl', ['$scope', 'ArticlesService', '$sce', '$routePa
         theme: 'modern'
     };
 }]);
-function DialogController($scope, $mdDialog, articleId, ArticlesService) {
-    $scope.keywords = ArticlesService.getKeyWordsForArticle(articleId)
+function DialogController($scope, $mdDialog, articleId, keywords, ArticlesService) {
+    $scope.keywords = keywords;
     $scope.hide = function () {
         $mdDialog.hide();
     };
     $scope.cancel = function () {
         $mdDialog.cancel();
     };
-    $scope.answer = function (answer) {
-        $mdDialog.hide(answer);
+    $scope.save = function () {
+        ArticlesService.saveKeyWordsForArticle($scope.keywords,articleId);
+        $mdDialog.cancel();
     };
 }

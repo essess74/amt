@@ -30,5 +30,10 @@ app.service('ArticlesService', ['$resource', function ($resource) {
         return $resource('keywords', {}, {
             query: {method: 'GET', params: {articleId: articleId}, isArray: true}
         }).query();
+    };
+    this.saveKeyWordsForArticle = function (keywords, articleId) {
+        return $resource('keywords', {}, {
+            query: {method: 'POST', params: {keywords: keywords, articleId: articleId}, isArray: false}
+        }).query();
     }
 }]);
