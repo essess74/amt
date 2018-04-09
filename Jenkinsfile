@@ -1,20 +1,26 @@
 pipeline {
     agent any
-
+    tools {
+        maven 'maven_3.5.3'
+        jdk 'jdk8_162'
+    }
     stages {
-        stage('Build') {
+        stage ('Initialize') {
             steps {
-                echo 'Building..'
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
             }
         }
-        stage('Test') {
+
+        stage ('Build') {
             steps {
-                echo 'Testing..'
+                sh 'mvn -Dmaven.test.failure.ignore=true install' 
             }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+            post {
+                success {
+                }
             }
         }
     }
